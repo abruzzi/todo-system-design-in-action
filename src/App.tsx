@@ -1,10 +1,14 @@
 import "./App.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Todos } from "./Todos.tsx";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div>
-      <h1>Todo application</h1>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <Todos />
+    </QueryClientProvider>
   );
 }
 
