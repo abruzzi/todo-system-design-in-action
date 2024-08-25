@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "text": "Buy groceries",
+    "category": "Personal",
+    "priority": 2,
+    "assignee": {
+      "name": "Alice Johnson",
+      "role": "Team Lead",
+      "avatar": "https://example.com/avatars/alice.jpg"
+    }
+  },
+  {
+    "id": 2,
+    "text": "Finish project report",
+    "category": "Work",
+    "priority": 1,
+    "assignee": {
+      "name": "Bob Smith",
+      "role": "Developer",
+      "avatar": "https://example.com/avatars/bob.jpg"
+    }
+  },
+  {
+    "id": 3,
+    "text": "Call the dentist for an appointment",
+    "category": "Health",
+    "priority": 3
+  },
+  {
+    "id": 4,
+    "text": "Water the plants",
+    "category": "Personal",
+    "priority": 2,
+    "assignee": {
+      "name": "Charlie Brown",
+      "role": "Designer",
+      "avatar": "https://example.com/avatars/charlie.jpg"
+    }
+  },
+  {
+    "id": 5,
+    "text": "Plan weekend getaway",
+    "category": "Personal",
+    "priority": 2
+  },
+  {
+    "id": 6,
+    "text": "Update resume",
+    "category": "Career",
+    "priority": 1
+  },
+  {
+    "id": 7,
+    "text": "Read 'Clean Code' book",
+    "category": "Learning",
+    "priority": 3,
+    "assignee": {
+      "name": "Alice Johnson",
+      "role": "Team Lead",
+      "avatar": "https://example.com/avatars/alice.jpg"
+    }
+  },
+  {
+    "id": 8,
+    "text": "Prepare for Monday's meeting",
+    "category": "Work",
+    "priority": 1,
+    "assignee": {
+      "name": "Eve Adams",
+      "role": "Manager",
+      "avatar": "https://example.com/avatars/eve.jpg"
+    }
+  },
+  {
+    "id": 9,
+    "text": "Send birthday card to John",
+    "category": "Personal",
+    "priority": 2
+  },
+  {
+    "id": 10,
+    "text": "Organize the garage",
+    "category": "Home",
+    "priority": 3
+  },
+  {
+    "id": 11,
+    "text": "Pay electricity bill",
+    "category": "Finance",
+    "priority": 1
+  },
+  {
+    "id": 12,
+    "text": "Schedule car maintenance",
+    "category": "Personal",
+    "priority": 2,
+    "assignee": {
+      "name": "Charlie Brown",
+      "role": "Designer",
+      "avatar": "https://example.com/avatars/charlie.jpg"
+    }
+  },
+  {
+    "id": 13,
+    "text": "Buy a gift for Sarah",
+    "category": "Personal",
+    "priority": 2
+  },
+  {
+    "id": 14,
+    "text": "Take the dog for a walk",
+    "category": "Personal",
+    "priority": 2,
+    "assignee": {
+      "name": "Bob Smith",
+      "role": "Developer",
+      "avatar": "https://example.com/avatars/bob.jpg"
+    }
+  },
+  {
+    "id": 15,
+    "text": "Finish React tutorial",
+    "category": "Learning",
+    "priority": 1
+  },
+  {
+    "id": 16,
+    "text": "Clean the kitchen",
+    "category": "Home",
+    "priority": 2
+  },
+  {
+    "id": 17,
+    "text": "Backup important files",
+    "category": "Work",
+    "priority": 1
+  },
+  {
+    "id": 18,
+    "text": "Write a blog post",
+    "category": "Career",
+    "priority": 2,
+    "assignee": {
+      "name": "Eve Adams",
+      "role": "Manager",
+      "avatar": "https://example.com/avatars/eve.jpg"
+    }
+  },
+  {
+    "id": 19,
+    "text": "Plan monthly budget",
+    "category": "Finance",
+    "priority": 1
+  },
+  {
+    "id": 20,
+    "text": "Review pull requests",
+    "category": "Work",
+    "priority": 1
+  },
+  {
+    "id": 21,
+    "text": "Renew gym membership",
+    "category": "Health",
+    "priority": 3
+  },
+  {
+    "id": 22,
+    "text": "Update project documentation",
+    "category": "Work",
+    "priority": 1
+  },
+  {
+    "id": 23,
+    "text": "Set up a meeting with the design team",
+    "category": "Work",
+    "priority": 1,
+    "assignee": {
+      "name": "Charlie Brown",
+      "role": "Designer",
+      "avatar": "https://example.com/avatars/charlie.jpg"
+    }
+  },
+  {
+    "id": 24,
+    "text": "Prepare a presentation for Friday",
+    "category": "Work",
+    "priority": 2,
+    "assignee": {
+      "name": "Alice Johnson",
+      "role": "Team Lead",
+      "avatar": "https://example.com/avatars/alice.jpg"
+    }
+  },
+  {
+    "id": 25,
+    "text": "Review the latest industry news",
+    "category": "Learning",
+    "priority": 3
+  }
+]
