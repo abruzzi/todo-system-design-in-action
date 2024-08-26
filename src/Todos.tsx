@@ -3,16 +3,16 @@ import { getTodos, postTodo } from "./api.ts";
 import { Todo } from "./types.ts";
 
 export const Todos = () => {
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const query = useQuery<Todo[]>({ queryKey: ["todos"], queryFn: getTodos });
 
-  // const mutation = useMutation({
-  //   mutationFn: postTodo,
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries({ queryKey: ["todos"] });
-  //   },
-  // });
+  const mutation = useMutation({
+    mutationFn: postTodo,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
+    },
+  });
 
   console.log(query.data);
 
@@ -24,15 +24,15 @@ export const Todos = () => {
         ))}
       </ul>
 
-      {/*<button*/}
-      {/*  onClick={() => {*/}
-      {/*    mutation.mutate({*/}
-      {/*      text: "Buy some milk",*/}
-      {/*    });*/}
-      {/*  }}*/}
-      {/*>*/}
-      {/*  Add Todo*/}
-      {/*</button>*/}
+      <button
+        onClick={() => {
+          mutation.mutate({
+            text: "Buy some milk",
+          });
+        }}
+      >
+        Add Todo
+      </button>
     </div>
   );
 };
