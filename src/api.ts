@@ -6,7 +6,7 @@ export const getTodos = async (): Promise<Todo[]> => {
   return response.data;
 };
 
-export const postTodo = async (newTodo: { text: string }): Promise<Todo> => {
+export const postTodo = async (newTodo: Todo): Promise<Todo> => {
   const response = await axios.post('/api/todos', newTodo);
   return response.data;
 };

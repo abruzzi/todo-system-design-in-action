@@ -1,15 +1,3 @@
-/*
-    "id": 1,
-    "text": "Buy groceries",
-    "category": "Personal",
-    "priority": 2,
-    "assignee": {
-      "name": "Alice Johnson",
-      "role": "Team Lead",
-      "avatar": "https://example.com/avatars/alice.jpg"
-    }
- */
-
 export type User = {
   name: string;
   role: string;
@@ -17,12 +5,18 @@ export type User = {
 };
 
 export enum TodoCategory {
-  "Personal"
+  Personal = "Personal",
+  Work = "Work",
+  Health = "Health",
+  Learning = "Learning",
+  Finance = "Finance"
 }
 
 export type Todo = {
-  "id": number,
-  "text": string,
-  "category": TodoCategory,
-  "priority": 2,
+  id: number,
+  text: string,
+  category: TodoCategory,
+  priority: number,
+  createdAt: string;
+  assignee?: User,
 }

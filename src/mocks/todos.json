@@ -4,6 +4,7 @@
     "text": "Buy groceries",
     "category": "Personal",
     "priority": 2,
+    "createdAt": "2023-01-24T09:15:00Z",
     "assignee": {
       "name": "Alice Johnson",
       "role": "Team Lead",
@@ -15,6 +16,7 @@
     "text": "Finish project report",
     "category": "Work",
     "priority": 1,
+    "createdAt": "2023-01-24T09:15:00Z",
     "assignee": {
       "name": "Bob Smith",
       "role": "Developer",
@@ -25,13 +27,15 @@
     "id": 3,
     "text": "Call the dentist for an appointment",
     "category": "Health",
-    "priority": 3
+    "priority": 3,
+    "createdAt": "2023-01-24T11:30:00Z"
   },
   {
     "id": 4,
     "text": "Water the plants",
     "category": "Personal",
     "priority": 2,
+    "createdAt": "2023-01-24T11:30:00Z",
     "assignee": {
       "name": "Charlie Brown",
       "role": "Designer",
@@ -42,19 +46,22 @@
     "id": 5,
     "text": "Plan weekend getaway",
     "category": "Personal",
-    "priority": 2
+    "priority": 2,
+    "createdAt": "2023-01-24T12:30:00Z"
   },
   {
     "id": 6,
     "text": "Update resume",
     "category": "Career",
-    "priority": 1
+    "priority": 1,
+    "createdAt": "2023-01-24T12:30:00Z"
   },
   {
     "id": 7,
     "text": "Read 'Clean Code' book",
     "category": "Learning",
     "priority": 3,
+    "createdAt": "2023-02-24T12:30:00Z",
     "assignee": {
       "name": "Alice Johnson",
       "role": "Team Lead",
@@ -66,6 +73,7 @@
     "text": "Prepare for Monday's meeting",
     "category": "Work",
     "priority": 1,
+    "createdAt": "2024-02-24T12:30:00Z",
     "assignee": {
       "name": "Eve Adams",
       "role": "Manager",
@@ -76,7 +84,8 @@
     "id": 9,
     "text": "Send birthday card to John",
     "category": "Personal",
-    "priority": 2
+    "priority": 2,
+    "createdAt": "2024-02-24T10:30:00Z"
   },
   {
     "id": 10,
