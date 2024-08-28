@@ -1,8 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getTodos, postTodo } from "./api.ts";
 import { Todo } from "./types.ts";
 import { useEffect, useRef, useState } from "react";
 import { TodoCategory } from "./types.ts";
+import React from "react";
 
 const categoryColors: Record<TodoCategory, string> = {
   Personal: "bg-blue-100 text-blue-800",
@@ -12,13 +13,50 @@ const categoryColors: Record<TodoCategory, string> = {
   Finance: "bg-yellow-100 text-yellow-800",
 };
 
+interface TodoPage {
+  todos: Todo[];
+  total: number;
+}
+
 export const Todos = () => {
   const [newTodoText, setNewTodoText] = useState('');
   const [isAdding, setIsAdding] = useState(false);
   const queryClient = useQueryClient();
   const inputRef = useRef<HTMLInputElement>(null);
+  const lastTodoRef = useRef<HTMLLIElement | null>(null);
 
-  const { data: todos = [] } = useQuery<Todo[]>({ queryKey: ["todos"], queryFn: getTodos });
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery<TodoPage, Error>({
+    queryKey: ["todos"],
+    queryFn: ({ pageParam = 0 }) => getTodos(Number(pageParam), 10),
+    getNextPageParam: (lastPage, allPages) => {
+      const nextOffset = allPages.length * 10;
+      return nextOffset < lastPage.total ? nextOffset : undefined;
+    },
+    initialPageParam: 0,
+  });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    if (lastTodoRef.current) {
+      observer.observe(lastTodoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
 
   const mutation = useMutation({
     mutationFn: postTodo,
@@ -60,13 +98,7 @@ export const Todos = () => {
   
   return (
     <div className="h-screen flex flex-col bg-gradient-to-br from-gray-50 to-gray-100">
-      <header className="bg-white shadow-sm top-0 left-0 right-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center">
-          <button className="mr-4">←</button>
-          <h1 className="text-xl font-semibold">All my todolists</h1>
-        </div>
-      </header>
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 overflow-hidden flex flex-col">
+      <main className="flex-1 w-full max-w-lg  mx-auto px-4 sm:px-6 lg:px-8 py-8 overflow-hidden flex flex-col">
         <h2 className="text-3xl font-bold mb-6">Tasks</h2>
         <div className="bg-white rounded-lg shadow flex-1 flex flex-col overflow-hidden">
           <div className="p-6 border-b border-gray-200">
@@ -80,12 +112,12 @@ export const Todos = () => {
                 onKeyDown={handleAddTodo}
                 onBlur={handleBlur}
                 placeholder="Add a new task and press Enter"
-                className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-2 h-10 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             ) : (
               <button 
                 onClick={() => setIsAdding(true)}
-                className="text-blue-600 hover:text-blue-800 font-medium"
+                className="text-blue-600 h-10 hover:text-blue-800 font-medium rounded-full border border-gray-300 w-full text-center"
               >
                 + Add task
               </button>
@@ -93,24 +125,33 @@ export const Todos = () => {
           </div>
           <div className="flex-1 overflow-y-auto custom-scrollbar">
             <ul className="space-y-4 p-6">
-              {todos.map(todo => (
-                <li key={todo.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                  <div className="flex items-center">
-                    <div className="flex-1">
-                      <p className="font-medium">{todo.text}</p>
-                      <div className="flex items-center justify-between mt-2">
-                        <span className={`text-xs font-semibold px-2 py-1 rounded-full ${categoryColors[todo.category] || 'bg-gray-100 text-gray-800'}`}>
-                          {todo.category}
-                        </span>
-                        <p className="text-sm text-gray-500">
-                          {new Date(todo.createdAt).toLocaleString()}
-                        </p>
+            {data?.pages.map((page, pageIndex) => (
+                <React.Fragment key={pageIndex}>
+                  {page.todos.map((todo, todoIndex) => (
+                    <li
+                      key={todo.id}
+                      ref={pageIndex === data.pages.length - 1 && todoIndex === page.todos.length - 1 ? lastTodoRef : null}
+                      className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
+                    >
+                    <div className="flex items-center">
+                      <div className="flex-1">
+                        <p className="font-medium">{todo.text}</p>
+                        <div className="flex items-center justify-between mt-2">
+                          <span className={`text-xs font-semibold px-2 py-1 rounded-full ${categoryColors[todo.category] || 'bg-gray-100 text-gray-800'}`}>
+                            {todo.category}
+                          </span>
+                          <p className="text-sm text-gray-500">
+                            {new Date(todo.createdAt).toLocaleString()}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
+                    </li>
+                  ))}
+                </React.Fragment>
               ))}
             </ul>
+            {isFetchingNextPage && <p className="text-center py-4">Loading more...</p>}
           </div>
         </div>
       </main>
